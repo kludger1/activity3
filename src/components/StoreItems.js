@@ -1,6 +1,19 @@
 import React from 'react'
 
-const Items = ({ items }) => {
+const Items = ({ items, deleteItem }) => {
+    const itemsList =
+        items.map(item => {
+            return (
+                <tr className="item" key={item.id}>
+                    <td> {item.name}</td>
+                    <td>{item.description}</td>
+                    <td>{item.cost}</td>
+                    <td> <button class="btn red lighten-2" onClick={() => {deleteItem(item.id)}}>Delete Item
+                    </button></td>
+                </tr>
+            )
+        })
+
     return (
         <div className="items-list container">
             {
@@ -14,17 +27,7 @@ const Items = ({ items }) => {
                     </thead>
 
                     <tbody>
-                        {
-                            items.map(item => {
-                                return (
-                                    <tr className="item" key={item.id}>
-                                        <td> {item.name}</td>
-                                        <td>{item.description}</td>
-                                        <td>{item.cost}</td>
-                                    </tr>
-                                )
-                            })
-                        }
+                        {itemsList}
                     </tbody>
                 </table>
             }

@@ -10,10 +10,20 @@ class Store extends Component {
       {name: "ring", description: "nice gold ring", cost: "50.99", id: 4 }
     ]
   }
+
+  deleteItem = (id) => {
+    let items = this.state.items.filter(item => {
+      return item.id !== id
+    });
+    this.setState({
+      items: items
+    });
+  }
+
   render() {
     return (
       <div className="App">
-      <Items items={this.state.items} />
+      <Items items={this.state.items} deleteItem={this.deleteItem} />
       </div>
     );
   }
